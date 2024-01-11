@@ -13,15 +13,25 @@ Game1 = connectFour(p1, p2)
 
 print("The Game has started! \n")
 
-Game1.printgb()
-
 while True:
-    p1Turn = input(f" player 1 {p1}, Where would you like to place your token? ex. B4 \n").upper()
+    Game1.printgb()
+    p1Turn = True
+    p2Turn = True
+    
+    
+    while p1Turn == True:
+        p1move = input(f" player 1 {p1}, Where would you like to place your token? ex. B4 \n").upper()
 
-    Game1.p1placetk(p1Turn)
+        p1Turn = Game1.p1placetk(p1move)
+    
+    
     
     Game1.printgb()
+
+    while p2Turn == True:
+        p2Move = input(f" player 2 {p2}, Where would you like to place your token? ex. A3 \n").upper()
+   
+        p2Turn = Game1.p2placetk(p2Move)
     
-    p2Turn = input(f" player 2 {p2}, Where would you like to place your token? ex. A3 \n").upper()
     
-    Game1.p2placetk()
+    

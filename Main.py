@@ -24,10 +24,12 @@ class connectFour:
         gb = self.gameboard
         i = 0
         
-        print("\n   A  B  C  D  E  F  G")
-        for x in gb:
+        print("\n   A    B    C    D    E    F    G")
+        for x in range(6):
             i += 1
-            print(f'{i} {x} \n')
+            a = i - 1
+            print(f' +----+----+----+----+----+----+----+')
+            print(f'{i}| {gb[a][0]}  | {gb[a][1]}  | {gb[a][2]}  | {gb[a][3]}  | {gb[a][4]}  | {gb[a][5]}  | {gb[a][6]}  | ')
             
     def findtoken(self, token):
        
@@ -47,12 +49,33 @@ class connectFour:
         gb = self.gameboard
         
         columnIndex, rowIndex = self.findtoken(token)
+        #Checking if the player can place the token on the desire spot.
+        if columnIndex == 5:
+            
+            gb[columnIndex][rowIndex] = 'X'
 
-        gb[columnIndex][rowIndex] = 'X'
+        elif gb[columnIndex + 1][rowIndex] == 'X' or gb[columnIndex + 1][rowIndex] == 'O':
+            
+            gb[columnIndex][rowIndex] = 'X'
+        
+        else:
+            print("You can not place the token there!")
+            return True
     
     def p2placetk(self, token):
         gb = self.gameboard
        
         columnIndex, rowIndex = self.findtoken(token)
-       
-        gb[columnIndex][rowIndex] = 'O'
+        
+        #Checking if the player can place the token on the desire spot.
+        if columnIndex == 5:
+            
+            gb[columnIndex][rowIndex] = 'O'
+            
+        elif gb[columnIndex + 1][rowIndex] == 'X' or gb[columnIndex + 1][rowIndex] == 'O':
+            
+            gb[columnIndex][rowIndex] = 'O'
+        
+        else:
+            print("You can not place the token there!")
+            return True
