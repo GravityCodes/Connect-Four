@@ -9,7 +9,7 @@ class connectFour:
         self.p1 = p1
         self.p2 = p2
         self.row = ["1", "2", "3", "4", "5", "6"]
-        self.column = ["A", "B", "C", "D", "E", "F", "G"]
+        self.column = ["1", "2", "3", "4", "5", "6", "7"]
         self.gameboard = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -28,67 +28,48 @@ class connectFour:
         gb = self.gameboard
         i = 0
         
-        print("\n   A    B    C    D    E    F    G")
+        print("\n   1    2    3    4    5    6    7")
         for x in range(self.rowNumbers):
             i += 1
             a = i - 1
             print(f' +----+----+----+----+----+----+----+')
-            print(f'{i}| {gb[a][0]}  | {gb[a][1]}  | {gb[a][2]}  | {gb[a][3]}  | {gb[a][4]}  | {gb[a][5]}  | {gb[a][6]}  | ')
+            print(f' | {gb[a][0]}  | {gb[a][1]}  | {gb[a][2]}  | {gb[a][3]}  | {gb[a][4]}  | {gb[a][5]}  | {gb[a][6]}  | ')
             
     def findspot(self, token):
        
-        row = self.row
         column = self.column
-           #The token should be a string of a letter and number. Ex A2
-        for letter in token:
-            if letter in column:
-                columnIndex = column.index(letter)
+           #The token should be a number from 1 to 7. Ex A2
+    
         for number in token:
-            if number in row:
-                rowIndex = row.index(number)
+            if number in column:
+                columnIndex = column.index(number)
                 
-        return columnIndex, rowIndex
+        return columnIndex
     
     def p1placetk(self, token):
         gb = self.gameboard
         p1x = self.p1Token
         p2x = self.p2Token
         
-        columnIndex, rowIndex = self.findspot(token)
+        columnIndex = self.findspot(token)
         #Checking if the player can place the token on the desire spot.
-        if gb[rowIndex][columnIndex] != 0:
-            print("You can not place the token there!")
-            return True
-        elif rowIndex == 5:
-            gb[rowIndex][columnIndex] = p1x
-        elif gb[rowIndex + 1][columnIndex] == p1x or gb[rowIndex + 1][columnIndex] == p2x:
-            
-            gb[rowIndex][columnIndex] = p1x
-        else:
-            print("You can not place the token there!")
-            return True
-    
+        for row in reversed(range(6)):
+            if gb[row][columnIndex] == 0:
+                gb[row][columnIndex] = p1x
+                break
+
     def p2placetk(self, token):
         gb = self.gameboard
         p2x = self.p2Token
-        p1x = self.p1Token
-        columnIndex, rowIndex = self.findspot(token)
+
+        columnIndex = self.findspot(token)
         
         #Checking if the player can place the token on the desire spot.
-        if gb[rowIndex][columnIndex] != 0:
-            print("There is already a token in that spot!")
-            return True
-        elif rowIndex == 5:
-            
-            gb[rowIndex][columnIndex] = p2x
-            
-        elif gb[rowIndex + 1][columnIndex] == p2x or gb[rowIndex + 1][columnIndex] == p1x:
-            
-            gb[rowIndex][columnIndex] = p2x
-        
-        else:
-            print("You can not place the token there!")
-            return True
+        for row in reversed(range(6)):
+            if gb[row][columnIndex] == 0:
+                gb[row][columnIndex] = p2x
+                break
+                
     def checkwinner(self, piece):
         gb = self.gameboard
         
@@ -99,5 +80,15 @@ class connectFour:
                     print("You won!")
                     return True
         #Check Vertical Locations
-            
-              
+        for r in range(self.rowNumbers - 3):
+            for c in range(self.columnNumbers):
+                if gb[r][c] == piece and gb[r + 1][c] == piece and gb[r + 2][c] == piece and gb[r + 3][c] == piece:
+                    print("You won!")
+                    return True
+        #Check for left to right diagonal locations
+        for r in range(self.rowNumbers -3):
+            for c in range(self.columnNumbers -3): 
+              if gb[r][c] == piece and gb[r+1][c+1] == piece and gb[r+2][c+2] == piece and gb[r+3][c+3] == piece:
+                  print("You won!")
+                  return True
+        #Check for right to left diagonal locations

@@ -25,6 +25,7 @@ while True:
         p1Turn = Game1.p1placetk(p1move)
 
     if Game1.checkwinner(Game1.p1Token) == True:
+         Game1.printgb()
          break
     
     
@@ -36,6 +37,7 @@ while True:
         p2Turn = Game1.p2placetk(p2Move)
     
     if Game1.checkwinner(Game1.p2Token) == True:
+        Game1.printgb()
         break
         
     
