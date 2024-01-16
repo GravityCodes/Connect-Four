@@ -35,40 +35,45 @@ class connectFour:
             print(f' +----+----+----+----+----+----+----+')
             print(f' | {gb[a][0]}  | {gb[a][1]}  | {gb[a][2]}  | {gb[a][3]}  | {gb[a][4]}  | {gb[a][5]}  | {gb[a][6]}  | ')
             
-    def findspot(self, token):
-       
-        column = self.column
-           #The token should be a number from 1 to 7. Ex A2
-    
-        for number in token:
-            if number in column:
-                columnIndex = column.index(number)
-                
-        return columnIndex
-    
     def p1placetk(self, token):
         gb = self.gameboard
         p1x = self.p1Token
+        column = self.column
+           #The token should be a number from 1 to 7. Ex A2
     
-        columnIndex = self.findspot(token)
-        #Checking if the player can place the token on the desire spot.
-        for row in reversed(range(6)):
-            if gb[row][columnIndex] == 0:
-                gb[row][columnIndex] = p1x
-                break
+       
+        if token in column:
+            columnIndex = column.index(token)
+            #Checking if the player can place the token on the desire spot.
+            for row in reversed(range(6)):
+                if gb[row][columnIndex] == 0:
+                    gb[row][columnIndex] = p1x
+                    break
+        else:
+            print("That is not a valid play")
+            return True
+        
+        
+        
 
     def p2placetk(self, token):
         gb = self.gameboard
         p2x = self.p2Token
-
-        columnIndex = self.findspot(token)
-        
-        #Checking if the player can place the token on the desire spot.
-        for row in reversed(range(6)):
-            if gb[row][columnIndex] == 0:
-                gb[row][columnIndex] = p2x
-                break
-                
+        column = self.column
+           #The token should be a number from 1 to 7. Ex A2
+    
+       
+        if token in column:
+            columnIndex = column.index(token)
+            #Checking if the player can place the token on the desire spot.
+            for row in reversed(range(6)):
+                if gb[row][columnIndex] == 0:
+                    gb[row][columnIndex] = p2x
+                    break
+        else:
+            print("That is not a valid play")
+            return True
+            
     def checkwinner(self, piece):
         gb = self.gameboard
         
