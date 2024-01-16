@@ -96,3 +96,4 @@ class connectFour:
               if gb[r][c] == piece and gb[r-1][c-1] == piece and gb[r-2][c-2] == piece and gb[r-3][c-3] == piece:
                   print("You won!")
                   return True
+              
