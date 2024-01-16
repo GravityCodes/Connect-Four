@@ -91,10 +91,8 @@ class connectFour:
                   print("You won!")
                   return True
         #Check for right to left diagonal locations
-        for c in range(self.columnNumbers -3):
+        for c in range(self.columnNumbers-1,4,-1):
             for r in range(self.rowNumbers-1, 3, -1): 
-              print(f"[{r}, {c}]")
-              if gb[r][c] == piece and gb[r-1][c+1] == piece and gb[r-2][c+2] == piece and gb[r-3][c+3] == piece:
+              if gb[r][c] == piece and gb[r-1][c-1] == piece and gb[r-2][c-2] == piece and gb[r-3][c-3] == piece:
                   print("You won!")
                   return True
-              print(f"{gb[r][c]}{gb[r-1][c+1]}{gb[r-2][c+2]}{gb[r-3][c+3]}")
