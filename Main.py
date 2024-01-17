@@ -20,7 +20,7 @@ class connectFour:
         ]
         self.columnNumbers = 7
         self.rowNumbers = 6
-        self.p1Token = "\u001b[0;31mX\u001b[0m"
+        self.p1Token = "\u001b[0;31mO\u001b[0m"
         self.p2Token = "\u001b[;33mO\u001b[0m"
         
     # Prints the gameboard to the terminal    
