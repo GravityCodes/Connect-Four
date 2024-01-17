@@ -26,12 +26,9 @@ class connectFour:
     # Prints the gameboard to the terminal    
     def printgb(self):
         gb = self.gameboard
-        i = 0
         
         print("\n   1    2    3    4    5    6    7")
-        for x in range(self.rowNumbers):
-            i += 1
-            a = i - 1
+        for a in range(self.rowNumbers):
             print(f' +----+----+----+----+----+----+----+')
             print(f' | {gb[a][0]}  | {gb[a][1]}  | {gb[a][2]}  | {gb[a][3]}  | {gb[a][4]}  | {gb[a][5]}  | {gb[a][6]}  | ')
             
@@ -39,9 +36,7 @@ class connectFour:
         gb = self.gameboard
         p1x = self.p1Token
         column = self.column
-           #The token should be a number from 1 to 7. Ex A2
-    
-       
+        #The token should be a number from 1 to 7. Ex A2
         if token in column:
             columnIndex = column.index(token)
             #Checking if the player can place the token on the desire spot.
@@ -49,12 +44,12 @@ class connectFour:
                 if gb[row][columnIndex] == 0:
                     gb[row][columnIndex] = p1x
                     break
+            else:
+                print("That column is full")
+                return True
         else:
             print("That is not a valid play")
             return True
-        
-        
-        
 
     def p2placetk(self, token):
         gb = self.gameboard
@@ -70,6 +65,9 @@ class connectFour:
                 if gb[row][columnIndex] == 0:
                     gb[row][columnIndex] = p2x
                     break
+            else:
+                print("That column is full")
+                return True
         else:
             print("That is not a valid play")
             return True

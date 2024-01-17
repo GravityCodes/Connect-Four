@@ -31,6 +31,7 @@ while True:
     
     Game1.printgb()
     Turns += 1
+    
     while p2Turn == True:
         p2Move = input(f" player 2 {p2}, Where would you like to place your token? ex. A3 \n").upper()
    
